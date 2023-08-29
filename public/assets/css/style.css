@@ -4,6 +4,32 @@
     --color-main: #f15A24;
 }
 
+.btn-primary{
+    --bs-btn-bg: #f15A24 !important;
+    --bs-btn-border-color:#f15A24 !important;
+    --bs-primary: #f15A24 !important;
+}
+
+.page-link{
+    color: #f15A24 !important;
+}
+
+.card-header{
+    color: #fff !important;
+    background-color: #f15A24 !important;
+}
+
+.form-middle{
+    height: 100vh;
+    justify-content: center;
+}
+
+.center-form{
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 * {
     font-family: 'Fira Sans';
     box-sizing: border-box;
@@ -73,6 +99,11 @@ body{
     margin-left: 1rem;
 }
 
+.brand-icons a {
+    color: #fff;
+}
+
+
 .sidebar-user {
    margin: 1rem 0rem 1rem 0rem;
    text-align: center;
@@ -140,6 +171,24 @@ body{
     margin-right: 1rem;
 }
 
+.action-btn span{
+    font-size: 1.5rem;
+}
+
+.mylist{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.mylist div{
+    display: flex;
+    align-items: center;
+}
+
+.searchbar span{
+    font-size: 1.2rem;
+}
 
 header {
     height: 70px;
@@ -345,6 +394,11 @@ main {
     margin-left: 1rem;
     font-size: .8rem;
  }
+
+.job-more{
+    display: flex;
+    align-items: center;
+}
 
  .job-title{
     display: flex;

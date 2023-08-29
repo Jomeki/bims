@@ -1,5 +1,5 @@
 @extends('layouts.pages')
-
+@section('pagetitle') Employees page @endsection
 @section('content')
     <div class="main-content">
         <main>
@@ -9,16 +9,16 @@
                     <small>Manage and Monitor Employees</small>
                 </div>
 
-                <div class="header-actions">
-                    <button>
-                        <span class="las la-file-export"></span>
-                        Export
-                    </button>
-                    <button>
-                        <span class="las la-tools"></span>
-                        More Options
-                    </button>
-                </div>
+{{--                <div class="header-actions">--}}
+{{--                    <button>--}}
+{{--                        <span class="las la-file-export"></span>--}}
+{{--                        Export--}}
+{{--                    </button>--}}
+{{--                    <button>--}}
+{{--                        <span class="las la-tools"></span>--}}
+{{--                        More Options--}}
+{{--                    </button>--}}
+{{--                </div>--}}
             </div>
 
             <div class="employees-form my-5">
@@ -61,92 +61,182 @@
             </div>
 
             <div class="card">
-                <div class="card-header">Order list</div>
+                <div class="card-header mylist">
+                    <div>Employees list</div>
+
+                    <div class="searchbar">
+                        <form class="d-flex form-floating-mb3">
+                            <input class="form-control me-2"  type="search" placeholder="Search employees" aria-label="Search">
+                            <button class="btn btn-secondary" type="submit">Search</button>
+                        </form>
+                        <button type="button" class="btn btn-light mx-2" title="Filter"><div style="display: flex;align-items: center"><span class="las la-filter"></span></div></button>
+                    </div>
+                </div>
                 <div class="card-body">
                     <div class="jobs mytable">
                         <div class="table-responsive">
                             <table class="table" style="width: 100%;">
                                 <thead>
                                 <td>S/O</td>
-                                <td>Customer name</td>
-                                <td>Product name</td>
-                                <td>Product Quantity</td>
-                                <td>Delivery Location</td>
-                                <td>Order Date</td>
-                                <td>Order status</td>
+                                <td>Employee name</td>
+                                <td>E-mail</td>
+                                <td>Phone number</td>
+                                <td>Position</td>
+                                <td>Hire Date</td>
+                                <td>Salary</td>
+                                <td>Actions</td>
                                 </thead>
                                 <tbody>
                                 <tr>
                                     <td><div><span class="indicator"></span></div></td>
                                     <td><div>John Doe</div></td>
-                                    <td><div>Iphone 14</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>Arusha, Tanzania</div></td>
+                                    <td><div>john@gmail.com</div></td>
+                                    <td><div>+255700000000</div></td>
+                                    <td><div>Janitor</div></td>
                                     <td><div>10/02/23</div></td>
-                                    <td><div class="order-status complete"><button>Complete</button></div></td>
+                                    <td><div>2,000,000</div></td>
+                                    <td>
+                                        <div class="action-btn">
+                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
+                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
+
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><div><span class="indicator"></span></div></td>
                                     <td><div>John Doe</div></td>
-                                    <td><div>Samsung S20</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>Moshi, Tanzania</div></td>
-                                    <td><div>30/07/23</div></td>
-                                    <td><div class="order-status pending"><button>Pending</button></div></td>
+                                    <td><div>john@gmail.com</div></td>
+                                    <td><div>+255700000000</div></td>
+                                    <td><div>Janitor</div></td>
+                                    <td><div>10/02/23</div></td>
+                                    <td><div>2,000,000</div></td>
+                                    <td>
+                                        <div class="action-btn">
+                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
+                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><div><span class="indicator"></span></div></td>
                                     <td><div>John Doe</div></td>
-                                    <td><div>Iphone 6</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>Kigoma, Tanzania</div></td>
-                                    <td><div>12/02/23</div></td>
-                                    <td><div class="order-status complete"><button>Complete</button></div></td>
+                                    <td><div>john@gmail.com</div></td>
+                                    <td><div>+255700000000</div></td>
+                                    <td><div>Janitor</div></td>
+                                    <td><div>10/02/23</div></td>
+                                    <td><div>2,000,000</div></td>
+                                    <td>
+                                        <div class="action-btn">
+                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
+                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><div><span class="indicator"></span></div></td>
                                     <td><div>John Doe</div></td>
-                                    <td><div>HP Omen</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>Mbeya, Tanzania</div></td>
-                                    <td><div>21/02/23</div></td>
-                                    <td><div class="order-status complete"><button>Complete</button></div></td>
+                                    <td><div>john@gmail.com</div></td>
+                                    <td><div>+255700000000</div></td>
+                                    <td><div>Janitor</div></td>
+                                    <td><div>10/02/23</div></td>
+                                    <td><div>2,000,000</div></td>
+                                    <td>
+                                        <div class="action-btn">
+                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
+                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><div><span class="indicator"></span></div></td>
                                     <td><div>John Doe</div></td>
-                                    <td><div>HP Omen</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>Mbeya, Tanzania</div></td>
-                                    <td><div>21/02/23</div></td>
-                                    <td><div class="order-status complete"><button>Complete</button></div></td>
+                                    <td><div>john@gmail.com</div></td>
+                                    <td><div>+255700000000</div></td>
+                                    <td><div>Janitor</div></td>
+                                    <td><div>10/02/23</div></td>
+                                    <td><div>2,000,000</div></td>
+                                    <td>
+                                        <div class="action-btn">
+                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
+                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><div><span class="indicator"></span></div></td>
                                     <td><div>John Doe</div></td>
-                                    <td><div>HP Omen</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>Mbeya, Tanzania</div></td>
-                                    <td><div>21/02/23</div></td>
-                                    <td><div class="order-status complete"><button>Complete</button></div></td>
+                                    <td><div>john@gmail.com</div></td>
+                                    <td><div>+255700000000</div></td>
+                                    <td><div>Janitor</div></td>
+                                    <td><div>10/02/23</div></td>
+                                    <td><div>2,000,000</div></td>
+                                    <td>
+                                        <div class="action-btn">
+                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
+                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><div><span class="indicator"></span></div></td>
                                     <td><div>John Doe</div></td>
-                                    <td><div>HP Omen</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>Mbeya, Tanzania</div></td>
-                                    <td><div>21/02/23</div></td>
-                                    <td><div class="order-status complete"><button>Complete</button></div></td>
+                                    <td><div>john@gmail.com</div></td>
+                                    <td><div>+255700000000</div></td>
+                                    <td><div>Janitor</div></td>
+                                    <td><div>10/02/23</div></td>
+                                    <td><div>2,000,000</div></td>
+                                    <td>
+                                        <div class="action-btn">
+                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
+                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><div><span class="indicator"></span></div></td>
                                     <td><div>John Doe</div></td>
-                                    <td><div>HP Omen</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>Mbeya, Tanzania</div></td>
-                                    <td><div>21/02/23</div></td>
-                                    <td><div class="order-status complete"><button>Complete</button></div></td>
+                                    <td><div>john@gmail.com</div></td>
+                                    <td><div>+255700000000</div></td>
+                                    <td><div>Janitor</div></td>
+                                    <td><div>10/02/23</div></td>
+                                    <td><div>2,000,000</div></td>
+                                    <td>
+                                        <div class="action-btn">
+                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
+                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><div><span class="indicator"></span></div></td>
+                                    <td><div>John Doe</div></td>
+                                    <td><div>john@gmail.com</div></td>
+                                    <td><div>+255700000000</div></td>
+                                    <td><div>Janitor</div></td>
+                                    <td><div>10/02/23</div></td>
+                                    <td><div>2,000,000</div></td>
+                                    <td>
+                                        <div class="action-btn">
+                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
+                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><div><span class="indicator"></span></div></td>
+                                    <td><div>John Doe</div></td>
+                                    <td><div>john@gmail.com</div></td>
+                                    <td><div>+255700000000</div></td>
+                                    <td><div>Janitor</div></td>
+                                    <td><div>10/02/23</div></td>
+                                    <td><div>2,000,000</div></td>
+                                    <td>
+                                        <div class="action-btn">
+                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
+                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
+                                        </div>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
