@@ -20,7 +20,9 @@
                         </div>
                         <div class="form-floating mb-3">
                             <select name="categories" class="form-control" id="floatingInput">
-                                <option value="">Option 1</option>
+                                @foreach($categories as $category)
+                                    <option value="{{$category['id']}}">{{$category['cname']}}</option>
+                                @endforeach
                             </select>
                             <label for="floatingInput">Filter by Category</label>
                         </div>
@@ -58,32 +60,71 @@
                 <div class="card">
                     <div class="card-header">Add new Products</div>
                     <div class="card-body">
-                        <form action="" class="row g-3">
+                        <form action="/addproducts" method="POST" class="row g-3">
                             <div class="form-floating mb-3 col-6">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="Product Name">
+                                <input type="text" name="Productname" class="form-control @error('Productname') is-invalid @enderror" id="floatingInput" placeholder="Product Name">
                                 <label for="floatingInput">Product name</label>
+                                @error('Productname')
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
                             </div>
                             <div class="form-floating mb-3 col-6">
-                                <input type="text" class="form-control" id="floatingPassword" placeholder="Category">
+                                <select name="ProductCategory" id="floatingPassword" class="form-control @error('ProductCategory') is-invalid @enderror">
+                                    @foreach($categories as $category)
+                                    <option value="{{$category['id']}}">{{$category['cname']}}</option>
+                                    @endforeach
+                                </select>
                                 <label for="floatingPassword">Products category</label>
+                                @error('ProductCategory')
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
                             </div>
 
                             <div class=" mb-3 col-12">
-                                <textarea class="form-control" id="productdesc" rows="4" placeholder="Product description"></textarea>
+                                <textarea class="form-control @error('ProductDescription') is-invalid @enderror" name="ProductDescription" id="productdesc" rows="4" placeholder="Product description"></textarea>
+                                @error('ProductDescription')
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
                             </div>
 
-                            <div class="form-floating mb-3 col-6">
-                                <input type="number" class="form-control" id="floatingPassword" placeholder="Category">
+                            <div class="form-floating mb-3 col-12">
+                                <input type="number" name="ProductQuantity" class="form-control @error('ProductQuantity') is-invalid @enderror" id="floatingPassword" placeholder="Quantity">
                                 <label for="floatingPassword">Quantity</label>
+
+                                @error('ProductQuantity')
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
                             </div>
                             <div class="form-floating mb-3 col-6">
-                                <input type="number" class="form-control" id="floatingPassword" placeholder="Category">
-                                <label for="floatingPassword">Price</label>
+                                <input type="number" name="BuyingPrice" class="form-control @error('BuyingPrice') is-invalid @enderror" id="floatingPassword" placeholder="Category">
+                                <label for="floatingPassword">Buying Price</label>
+                                @error('BuyingPrice')
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
                             </div>
-
+                            <div class="form-floating mb-3 col-6">
+                                <input type="number" name="SellingPrice" class="form-control @error('SellingPrice') is-invalid @enderror" id="floatingPassword" placeholder="Category">
+                                <label for="floatingPassword">Selling Price</label>
+                                @error('SellingPrice')
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
+                            </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Add Product</button>
                             </div>
+                            @csrf
                         </form>
                     </div>
                 </div>
@@ -115,64 +156,27 @@
                                 <td>Actions</td>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td><div><span class="indicator"></span></div></td>
-                                    <td><div>Iphone 14</div></td>
-                                    <td><div>Electronics</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>1,400,000</div></td>
-                                    <td>
-                                        <div class="action-btn">
-                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
-                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><div><span class="indicator"></span></div></td>
-                                    <td><div>Iphone 14</div></td>
-                                    <td><div>Electronics</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>1,400,000</div></td>
-                                    <td>
-                                        <div class="action-btn">
-                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
-                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><div><span class="indicator"></span></div></td>
-                                    <td><div>Iphone 14</div></td>
-                                    <td><div>Electronics</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>1,400,000</div></td>
-                                    <td>
-                                        <div class="action-btn">
-                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
-                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><div><span class="indicator"></span></div></td>
-                                    <td><div>Iphone 14</div></td>
-                                    <td><div>Electronics</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>1,400,000</div></td>
-                                    <td>
-                                        <div class="action-btn">
-                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
-                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @foreach($products as $product)
+                                    <tr>
+                                        <td><div><span class="indicator"></span></div></td>
+                                        <td><div>{{$product['pname']}}</div></td>
+                                        <td><div>{{\App\Models\Category::select('cname')->where('id',$product['pcid'])->value('cname')}}</div></td>
+                                        <td><div>{{$product['pquantity']}}</div></td>
+                                        <td><div>{{$product['psprice']}}</div></td>
+                                        <td>
+                                            <div class="action-btn">
+                                                <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
+                                                <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
 
                                 </tbody>
                             </table>
                         </div>
-                        <div class="table-desc my-2">10 entries</div>
-                        <nav aria-label="Page navigation example">
+                        <div class="table-desc my-2">{{\App\Models\Product::all()->count()}} entries</div>
+                        <nav>
                             <ul class="pagination justify-content-center">
                                 <li class="page-item disabled">
                                     <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
@@ -185,7 +189,9 @@
                                 </li>
                             </ul>
                         </nav>
+
                     </div>
+
                 </div>
             </div>
 

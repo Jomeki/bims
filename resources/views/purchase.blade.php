@@ -19,9 +19,8 @@
                             <label for="floatingInput">To</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <select name="categories" class="form-control" id="floatingInput">
-                                <option value="">Employee 1</option>
-                            </select>
+                            @foreach($customers = \App\Models\Customer::select('cname')->get() as $customer)
+                                <option value="{{$customer['id']}}">{{$customer['cname']}}</option>@endforeach
                             <label for="floatingInput">Filter by Customer</label>
                         </div>
                     </form>
@@ -58,38 +57,75 @@
                 <div class="card">
                     <div class="card-header">Add new purchase</div>
                     <div class="card-body">
-                        <form action="" class="row g-3">
+                        <form action="/addpurchase" method="POST" class="row g-3">
                             <div class="form-floating mb-3 col-6">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="Customer Name">
+                                <input autocomplete="off" type="text" name="Customername" class="form-control @error('Customername') is-invalid @enderror" id="floatingInput" placeholder="Customer Name">
                                 <label for="floatingInput">Customer name</label>
+                                @error('Customername')
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
                             </div>
                             <div class="form-floating mb-3 col-6">
-                                <input type="tel" class="form-control" id="floatingInput" placeholder="Customer Name">
-                                <label for="floatingInput">Customer phone number</label>
+                                <input type="tel" autocomplete="off" name="Phonenumber" class="form-control @error('Phonenumber') is-invalid @enderror" id="floatingInput" placeholder="Customer Phonenumber">
+                                <label for="floatingInput">Phone number</label>
+                                @error('Phonenumber')
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
                             </div>
 
                             <div class="form-floating mb-3 col-6">
-                                <input type="text" class="form-control" id="floatingPassword" placeholder="Category">
+{{--                                <input type="text" class="form-control" id="floatingPassword" placeholder="Category">--}}
+                                <select name="Productname" id="floatingPassword" class="form-control">
+                                    @foreach($products as $product)
+                                        {{$prodprice = $product['psprice']}}
+                                        <option value="{{$product['id']}}">{{$product['pname']}}</option>
+                                    @endforeach
+                                </select>
                                 <label for="floatingPassword">Product name</label>
+                                @error('Productname')
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
                             </div>
 
                             <div class="form-floating mb-3 col-6">
-                                <input type="text" class="form-control" id="floatingPassword" placeholder="Category">
+                                <input type="text" name="ProductPrice" class="form-control disabled  @error("ProductPrice") is-invalid @enderror" id="floatingPassword" placeholder="Category"  value="{{$prodprice}}">
                                 <label for="floatingPassword">Product price</label>
+                                @error('ProductPrice')
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
                             </div>
 
                             <div class="form-floating mb-3 col-6">
-                                <input type="number" class="form-control" id="floatingPassword" placeholder="Category">
+                                <input type="number" name="ProductQuantity" class="form-control @error('ProductQuantity') is-invalid @enderror" id="floatingPassword" placeholder="Category">
                                 <label for="floatingPassword">Product Quantity</label>
+                                @error('ProductQuantity')
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
                             </div>
                             <div class="form-floating mb-3 col-6">
-                                <input type="number" class="form-control" id="floatingPassword" placeholder="Category">
+                                <input type="number" name="AmountPaid" class="form-control @error('AmountPaid') is-invalid @enderror" id="floatingPassword" placeholder="Category">
                                 <label for="floatingPassword">Amount paid</label>
+                                @error('AmountPaid')
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
                             </div>
 
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Add purchase</button>
                             </div>
+                            @csrf
                         </form>
                     </div>
                 </div>
@@ -119,176 +155,36 @@
                                 <td>Product Quantity</td>
                                 <td>Amount paid (TSH)</td>
                                 <td>Purchase date</td>
-                                <td>Purchase By</td>
+                                <td>Sold By</td>
                                 <td>Actions</td>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td><div><span class="indicator"></span></div></td>
-                                    <td><div>John Doe</div></td>
-                                    <td><div>Iphone 14</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>14,000,000</div></td>
-                                    <td><div>10/02/23</div></td>
-                                    <td><div>Juma Juma</div></td>
-                                    <td>
-                                        <div class="action-btn">
-                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
-                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
-                                            <a class="link-primary" title="Print record"><span class="las la-print"></span></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><div><span class="indicator"></span></div></td>
-                                    <td><div>John Doe</div></td>
-                                    <td><div>Iphone 14</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>14,000,000</div></td>
-                                    <td><div>10/02/23</div></td>
-                                    <td><div>Juma Juma</div></td>
-                                    <td>
-                                        <div class="action-btn">
-                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
-                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
-                                            <a class="link-primary" title="Print record"><span class="las la-print"></span></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><div><span class="indicator"></span></div></td>
-                                    <td><div>John Doe</div></td>
-                                    <td><div>Iphone 14</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>14,000,000</div></td>
-                                    <td><div>10/02/23</div></td>
-                                    <td><div>Juma Juma</div></td>
-                                    <td>
-                                        <div class="action-btn">
-                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
-                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
-                                            <a class="link-primary" title="Print record"><span class="las la-print"></span></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><div><span class="indicator"></span></div></td>
-                                    <td><div>John Doe</div></td>
-                                    <td><div>Iphone 14</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>14,000,000</div></td>
-                                    <td><div>10/02/23</div></td>
-                                    <td><div>Juma Juma</div></td>
-                                    <td>
-                                        <div class="action-btn">
-                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
-                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
-                                            <a class="link-primary" title="Print record"><span class="las la-print"></span></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><div><span class="indicator"></span></div></td>
-                                    <td><div>John Doe</div></td>
-                                    <td><div>Iphone 14</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>14,000,000</div></td>
-                                    <td><div>10/02/23</div></td>
-                                    <td><div>Juma Juma</div></td>
-                                    <td>
-                                        <div class="action-btn">
-                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
-                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
-                                            <a class="link-primary" title="Print record"><span class="las la-print"></span></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><div><span class="indicator"></span></div></td>
-                                    <td><div>John Doe</div></td>
-                                    <td><div>Iphone 14</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>14,000,000</div></td>
-                                    <td><div>10/02/23</div></td>
-                                    <td><div>Juma Juma</div></td>
-                                    <td>
-                                        <div class="action-btn">
-                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
-                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
-                                            <a class="link-primary" title="Print record"><span class="las la-print"></span></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><div><span class="indicator"></span></div></td>
-                                    <td><div>John Doe</div></td>
-                                    <td><div>Iphone 14</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>14,000,000</div></td>
-                                    <td><div>10/02/23</div></td>
-                                    <td><div>Juma Juma</div></td>
-                                    <td>
-                                        <div class="action-btn">
-                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
-                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
-                                            <a class="link-primary" title="Print record"><span class="las la-print"></span></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><div><span class="indicator"></span></div></td>
-                                    <td><div>John Doe</div></td>
-                                    <td><div>Iphone 14</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>14,000,000</div></td>
-                                    <td><div>10/02/23</div></td>
-                                    <td><div>Juma Juma</div></td>
-                                    <td>
-                                        <div class="action-btn">
-                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
-                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
-                                            <a class="link-primary" title="Print record"><span class="las la-print"></span></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><div><span class="indicator"></span></div></td>
-                                    <td><div>John Doe</div></td>
-                                    <td><div>Iphone 14</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>14,000,000</div></td>
-                                    <td><div>10/02/23</div></td>
-                                    <td><div>Juma Juma</div></td>
-                                    <td>
-                                        <div class="action-btn">
-                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
-                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
-                                            <a class="link-primary" title="Print record"><span class="las la-print"></span></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><div><span class="indicator"></span></div></td>
-                                    <td><div>John Doe</div></td>
-                                    <td><div>Iphone 14</div></td>
-                                    <td><div>100</div></td>
-                                    <td><div>14,000,000</div></td>
-                                    <td><div>10/02/23</div></td>
-                                    <td><div>Juma Juma</div></td>
-                                    <td>
-                                        <div class="action-btn">
-                                            <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
-                                            <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
-                                            <a class="link-primary" title="Print record"><span class="las la-print"></span></a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @foreach($purchases as $purchase)
+                                    <tr>
+                                        <td><div><span class="indicator"></span></div></td>
+                                        <td><div>{{$purchase['customername']}}</div></td>
+                                        <td><div>{{$prodname = \App\Models\Product::select('pname')->where('id',$purchase['pid'])->value('pname')}}</div></td>
+                                        <td><div>{{$purchase['quantity']}}</div></td>
+                                        <td><div>{{$purchase['amountpaid']}}</div></td>
+                                        <td><div>{{$purchase['created_at']}}</div></td>
+                                        <td><div>{{$employeename = \App\Models\Employee::select('ename')->where('id',$purchase['eid'])->value('ename')}}</div></td>
+                                        <td>
+                                            <div class="action-btn">
+                                                <a class="link-success" title="Edit"><span class="las la-edit"></span></a>
+                                                <a class="link-danger" title="Delete"><span class="las la-trash"></span></a>
+                                                <a class="link-primary" title="Print record"><span class="las la-print"></span></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+
 
                                 </tbody>
                             </table>
                         </div>
-                        <div class="table-desc my-2">10 entries</div>
-                        <nav aria-label="Page navigation example">
+                        <div class="table-desc my-2">{{\App\Models\Purchases::all()->count()}} entries</div>
+                        <nav>
                             <ul class="pagination justify-content-center">
                                 <li class="page-item disabled">
                                     <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +25,19 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/products', [App\Http\Controllers\HomeController::class, 'products'])->name('products');
-Route::get('/purchase', [App\Http\Controllers\HomeController::class, 'purchases'])->name('purchases');
-Route::get('/orders', [App\Http\Controllers\HomeController::class, 'orders'])->name('orders');
-Route::get('/employees', [App\Http\Controllers\HomeController::class, 'employees'])->name('employees');
+
+//Product routes
+Route::get('/products', [App\Http\Controllers\ProductController::class, 'products'])->name('products');
+Route::post('/addproducts', [App\Http\Controllers\ProductController::class, 'addproduct'])->name('addproducts');
+
+//Purchase routes
+Route::get('/purchase', [App\Http\Controllers\PurchaseController::class, 'purchases'])->name('purchases');
+Route::post('/addpurchase', [App\Http\Controllers\PurchaseController::class, 'addpurchase'])->name('addpurchase');
+
+//Order routes
+Route::get('/orders', [App\Http\Controllers\OrderController::class, 'orders'])->name('orders');
+Route::post('/addorder', [App\Http\Controllers\OrderController::class, 'addorder'])->name('addorder');
+
+//Employee routes
+Route::get('/employees', [App\Http\Controllers\EmployeeController::class, 'employees'])->name('employees');
+Route::post('/addemployee', [App\Http\Controllers\EmployeeController::class, 'addemployee'])->name('addemployee');

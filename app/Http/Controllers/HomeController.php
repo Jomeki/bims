@@ -26,23 +26,4 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function products()
-    {
-        return view('products');
-    }
-
-    public function purchases()
-    {
-        return view('purchase');
-    }
-
-    public function orders()
-    {
-        return view('orders');
-    }
-
-    public function employees()
-    {
-        return view('employees');
-    }
 }
